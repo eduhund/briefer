@@ -6,10 +6,10 @@ def get_all_links_from_webpage(webpage):
     ahrefs = webpage.find_elements(By.TAG_NAME, 'a')
 
     all_links = set()
-    for i in range(len(ahrefs)):
+    for a in ahrefs:
         # TODO Переписать на задержках или хотя бы на точном исключении
         try:
-            href = ahrefs[i].get_attribute('href')
+            href = a.get_attribute('href')
             all_links.add(href)
         except:
             pass
@@ -21,5 +21,5 @@ if __name__ == '__main__':
 
     webpage = open_webpage_by_url(URL)
     all_links = get_all_links_from_webpage(webpage)
-    
+
     print(all_links)
