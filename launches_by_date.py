@@ -7,6 +7,7 @@ from product_links_only import product_links_only
 from product_nick_from_url import product_nick_from_url
 
 def launches_by_date(date):
+    """Список запусков на конкретную дату"""
     launches_list_url = time_travel_url_by_date(date)
     launches_webpage = open_webpage_by_url(launches_list_url)
     launches_link_list = product_links_only(get_all_links_from_webpage(launches_webpage))
