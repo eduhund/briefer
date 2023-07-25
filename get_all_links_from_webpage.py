@@ -14,7 +14,7 @@ def get_all_links_from_webpage(webpage):
         except:
             pass
 
-    return all_links
+    return list(all_links)
 
 if __name__ == '__main__':
     URL = 'https://www.producthunt.com/time-travel/2023/2/20'
