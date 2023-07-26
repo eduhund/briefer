@@ -10,12 +10,15 @@ def get_website_of_product(product):
     url = product_hunt_url_by_nick(product)
     webpage = open_webpage_by_url(url)
     xpath = '//a[@data-test="product-header-visit-button"]'
-    ahref = webpage.find_element(By.XPATH, xpath)
-    href_with_ref = ahref.get_attribute('href')
-    pure_href = href_with_ref.split('?')[0]
+    try:
+        ahref = webpage.find_element(By.XPATH, xpath)
+        href_with_ref = ahref.get_attribute('href')
+        pure_href = href_with_ref.split('?')[0]
+    except:
+        pure_href = ''
     # TODO Слишком много функциональности в одной функции
 
     return pure_href
 
 if __name__ == '__main__':
-    print(get_website_of_product('jasper-6'))
+    print(get_website_of_product('help-turkey'))
