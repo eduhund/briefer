@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime
 
-def get_launch_dataframe_from_file(date):
+def load_launch_dataframe_from_file(date):
     """Получить датафрейм конкретного дня из файла"""
     # TODO Убрать константу из кода
     LAUNCHES_ARCHIVE = 'launches/' 
@@ -12,4 +12,4 @@ def get_launch_dataframe_from_file(date):
     return ldf
 
 if __name__ == '__main__':
-    print(get_launch_dataframe_from_file(datetime(2023,1,1)))
+    print(load_launch_dataframe_from_file(datetime(2023,1,1)))
