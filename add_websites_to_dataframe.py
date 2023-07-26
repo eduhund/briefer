@@ -1,7 +1,7 @@
 import pandas as pd
 from datetime import datetime
 from get_website_of_product import get_website_of_product
-from get_launch_dataframe_from_file import load_launch_dataframe_from_file
+from load_launch_dataframe_from_file import load_launch_dataframe_from_file
 
 def add_websites_to_dataframe(df):
     """Добавить колонку с вебсайтами в датафрейм"""
