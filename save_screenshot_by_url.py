@@ -14,8 +14,10 @@ def save_screenshort_by_url(nick, url):
         webpage.set_window_size(1280,1280+52)
         time.sleep(5)
         webpage.save_screenshot(file_path)
+        webpage.close()
 
     return True
 
 if __name__ == '__main__':
     save_screenshort_by_url('vk', 'https://www.vk.com')
+    
