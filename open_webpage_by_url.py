@@ -2,7 +2,7 @@ from selenium import webdriver
 
 def open_webpage_by_url(url):
     """Открыть страницу по URL"""
-    webpage = webdriver.Safari()
+    webpage = webdriver.Chrome()
     webpage.implicitly_wait(10)
     webpage.get(url)
     return webpage
