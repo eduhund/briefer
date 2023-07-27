@@ -1,6 +1,6 @@
 from selenium import webdriver
 
-webpage = webdriver.Safari()
-webpage.set_window_size(1440,1440)
-webpage.get('https://www.sobakapav.ru')
-webpage.save_screenshot('sobakapav.png')
+webpage = webdriver.Chrome()
+webpage.set_window_size(1024,1024)
+webpage.get('https://www.suprlance.com/')
+webpage.save_screenshot('test_save_screenshot.png')
