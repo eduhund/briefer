@@ -6,17 +6,33 @@ from add_user import add_user
 from show_all_users import show_all_users
 from get_random_shot import get_random_shot
 
+HELP_TEXT = """
+Это бот-прототип для сборки мудборда.
+Пока он умеет только показывать случайные скриншоты и спрашивать ваше мнение о них.
+
+Как реагировать на скриншот.
+😍 — клёво
+🫥 — ну такое
+⭐️ — запомнить
+❌ — со скриншотом что-то не так (например, чёрный экран)
+
+Нажимаете реакцию — получаете следующий скриншот для оценки.
+Пока реакции не сохраняются.
+
+Напишите /vote, чтобы начать.
+"""
+
 # TODO Вынести клавиатуру в отдельный модуль
 kb = InlineKeyboardMarkup(row_width=4)
 buttons = {
-    'like': InlineKeyboardButton(text='like', callback_data='like'),
-    'no': InlineKeyboardButton(text='no', callback_data='no'),
-    'star': InlineKeyboardButton(text='star', callback_data='star'),
-    'error': InlineKeyboardButton(text='error', callback_data='error')
+    'like': InlineKeyboardButton(text='😍', callback_data='like'),
+    'no': InlineKeyboardButton(text='🫥', callback_data='no'),
+    'star': InlineKeyboardButton(text='⭐️', callback_data='star'),
+    'error': InlineKeyboardButton(text='❌', callback_data='error')
     }
 
 kb.add(buttons['like'], buttons['no'], buttons['star'], buttons['error'])
-print(kb)
+# print(kb)
 
 bot = Bot(token=Config.token)
 dp = Dispatcher(bot)
@@ -24,7 +40,7 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start'])
 async def welcome(message: types.message):
     add_user(message)
-    await message.answer(text='Привет-привет')
+    await message.answer(text=HELP_TEXT)
 
 @dp.message_handler(commands=['vote'])
 async def vote(message: types.message):
@@ -53,7 +69,8 @@ async def vote_response(callback: types.CallbackQuery):
         answer = 'Вы нажали кнопку Error'
     else:
         answer = 'Непонятно, что вы нажали'
-    return await callback.answer(answer)
+    await callback.answer(answer)
+    await vote(callback.message)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
